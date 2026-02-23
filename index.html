@@ -52,7 +52,7 @@
   --fs-lg: clamp(1.4rem, 1.8vw + 0.7rem, 2rem);
   --fs-xl: clamp(2rem, 3vw + 0.8rem, 3.2rem);
   --fs-2xl: clamp(2.8rem, 5vw + 1rem, 5.5rem);
-  --fs-3xl: clamp(3.5rem, 7vw + 1.2rem, 8rem);
+  --fs-3xl: clamp(2.85rem, 5.6vw + 1rem, 6.5rem);
 
   /* Spacing */
   --space-xs: clamp(0.5rem, 0.5vw, 0.75rem);
@@ -388,9 +388,10 @@ body::before {
   font-family: 'Outfit', sans-serif;
   font-size: var(--fs-3xl);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.22;
   letter-spacing: -0.04em;
   margin-bottom: var(--space-lg);
+  max-width: 850px;
 }
 
 .hero__title-line {
@@ -1265,7 +1266,7 @@ body::before {
   }
 
   .hero__title {
-    font-size: clamp(2.4rem, 8vw, 3.5rem);
+    font-size: clamp(2rem, 6.5vw, 2.85rem);
   }
 
   .hero__cta-row {
@@ -1393,9 +1394,9 @@ body::before {
   <div class="hero__content">
     <div class="hero__eyebrow">Lead Product Designer</div>
     <h1 class="hero__title">
-      <span class="hero__title-line"><span class="hero__title-text">Transforming complex</span></span>
-      <span class="hero__title-line"><span class="hero__title-text">backend logic into</span></span>
-      <span class="hero__title-line"><span class="hero__title-text">high-performance <em>admin experiences.</em></span></span>
+      <span class="hero__title-line"><span class="hero__title-text">Transforming technical</span></span>
+      <span class="hero__title-line"><span class="hero__title-text">complexity into</span></span>
+      <span class="hero__title-line"><span class="hero__title-text"><em>high-performance experiences.</em></span></span>
     </h1>
     <p class="hero__subtitle">
       I design the tools that platform teams depend on — turning dense technical systems into interfaces that feel clear, capable, and surprisingly human.
