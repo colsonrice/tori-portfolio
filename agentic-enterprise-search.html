@@ -390,7 +390,7 @@ body::before {
     <div class="cs-section__label reveal">Overview</div>
     <h2 class="cs-section__title reveal reveal--delay-1">From keyword matching to platform-wide intelligence.</h2>
     <div class="cs-section__text reveal reveal--delay-2">
-      <p>Enterprise search touched every object, file, and setting in the platform — but returned noise instead of answers. I led the design of an agentic search experience that understands intent, surfaces cross-object context, and executes actions — turning a retrieval tool into a resolution engine.</p>
+      <p>Enterprise search touched every object, file, and setting in the platform — but returned noise instead of answers. I led design for the setup and configuration layer of a new agentic search product, focusing on how admins define search scope, configure ranking rules, and map intent categories across the platform's data model.</p>
     </div>
   </div>
 </section>
@@ -414,28 +414,28 @@ body::before {
         <div class="cs-step__number">1</div>
         <div class="cs-step__content">
           <h3>Discovery</h3>
-          <p>Analyzed 2M+ search queries to identify intent patterns. Categorized searches into navigation (go to X), lookup (find record Y), and action (do Z) types.</p>
+          <p>Mapped how admins currently configure search behavior across objects, fields, and permissions. Identified the technical constraints that made search setup opaque — scattered settings, no preview of results, and no feedback loop on ranking quality.</p>
         </div>
       </div>
       <div class="cs-step reveal reveal--delay-2">
         <div class="cs-step__number">2</div>
         <div class="cs-step__content">
           <h3>Architecture</h3>
-          <p>Designed an intent-classification layer that routes queries to specialized result experiences. Navigation queries go straight to the destination. Lookups show rich previews. Action queries trigger inline workflows.</p>
+          <p>Designed the admin-facing configuration surface: search scope definition (which objects, fields, and records to index), intent-mapping rules, and ranking weight controls — giving admins a clear model for how search behaves without exposing the underlying ML pipeline.</p>
         </div>
       </div>
       <div class="cs-step reveal reveal--delay-3">
         <div class="cs-step__number">3</div>
         <div class="cs-step__content">
           <h3>Design</h3>
-          <p>Created a unified search surface with contextual result cards, inline actions (edit, share, assign), AI-generated summaries, and follow-up suggestions that anticipate the user's next step.</p>
+          <p>Created the setup flow including a live preview mode that lets admins test queries against their configuration before publishing. Designed the intent category editor and result-type mapping interface.</p>
         </div>
       </div>
       <div class="cs-step reveal reveal--delay-4">
         <div class="cs-step__number">4</div>
         <div class="cs-step__content">
-          <h3>Testing</h3>
-          <p>A/B tested against legacy search with 10,000 users. Measured task completion rates, time-to-answer, and search abandonment.</p>
+          <h3>Validation</h3>
+          <p>Tested configuration flows with admins across org sizes. Iterated on the mental model for ranking controls — balancing technical precision with approachability for non-technical admins.</p>
         </div>
       </div>
     </div>
@@ -445,19 +445,19 @@ body::before {
 <section class="cs-section cs-section--alt">
   <div class="cs-section__container">
     <div class="cs-section__label reveal">Results</div>
-    <h2 class="cs-section__title reveal reveal--delay-1">A new category of enterprise search.</h2>
+    <h2 class="cs-section__title reveal reveal--delay-1">Admin-ready search configuration.</h2>
     <div class="cs-results">
       <div class="cs-result reveal reveal--delay-1">
         <div class="cs-result__number">0&rarr;1</div>
-        <div class="cs-result__label">New product category</div>
+        <div class="cs-result__label">New setup surface for agentic search</div>
       </div>
       <div class="cs-result reveal reveal--delay-2">
-        <div class="cs-result__number">&darr;</div>
-        <div class="cs-result__label">Reduced search-to-action time significantly</div>
+        <div class="cs-result__number">&#10003;</div>
+        <div class="cs-result__label">Admins can configure search scope and ranking without engineering support</div>
       </div>
       <div class="cs-result reveal reveal--delay-3">
-        <div class="cs-result__number">&#10003;</div>
-        <div class="cs-result__label">Turned search from retrieval into resolution</div>
+        <div class="cs-result__number">Live</div>
+        <div class="cs-result__label">Preview mode lets admins test before publishing</div>
       </div>
       <div class="cs-result reveal reveal--delay-4">
         <div class="cs-result__number">Einstein</div>
@@ -470,7 +470,7 @@ body::before {
 <!-- Deep Dive CTA -->
 <section class="cs-deepdive">
   <div class="cs-deepdive__container">
-    <a href="https://www.tjricedesigns.com/s-projects-side-by-side" target="_blank" rel="noopener" class="cs-deepdive__card reveal">
+    <a href="https://www.tjricedesigns.com/copy-of-agentforce-for-setup" target="_blank" rel="noopener" class="cs-deepdive__card reveal">
       <div class="cs-deepdive__text">
         <div class="cs-deepdive__label">Full Case Study</div>
         <div class="cs-deepdive__title">View detailed process &amp; screens</div>
@@ -491,7 +491,7 @@ body::before {
         Welcome.Salesforce.com
         <span class="cs-next__arrow">&rarr;</span>
       </div>
-      <div class="cs-next__desc">Redesigning the first impression for new Salesforce customers.</div>
+      <div class="cs-next__desc">Where platform complexity meets a first-time admin.</div>
     </a>
   </div>
 </section>
