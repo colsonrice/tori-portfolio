@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome.Salesforce.com — Tori Rice</title>
+<meta name="description" content="Case study: Redesigning the first-touch onboarding experience for new Salesforce customers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --aubergine-deep: #1a0a1e;
+  --aubergine: #2c1338;
+  --aubergine-mid: #3d1a4a;
+  --slack-purple: #611F69;
+  --slack-purple-light: #8b4a93;
+  --slack-blue: #36C5F0;
+  --slack-green: #2EB67D;
+  --slack-yellow: #ECB22E;
+  --slack-red: #E01E5A;
+  --cream: #FFF8F0;
+  --warm-white: #FDFBF7;
+  --warm-gray-100: #F5F0EA;
+  --warm-gray-200: #E8E0D6;
+  --warm-gray-300: #C4B8AA;
+  --warm-gray-400: #9A8C7C;
+  --warm-gray-500: #6B5D52;
+  --text-primary: #FDFBF7;
+  --text-secondary: rgba(253, 251, 247, 0.65);
+  --text-tertiary: rgba(253, 251, 247, 0.4);
+  --surface-0: var(--aubergine-deep);
+  --surface-1: var(--aubergine);
+  --surface-2: var(--aubergine-mid);
+  --surface-3: var(--slack-purple);
+  --accent-1: var(--slack-blue);
+  --accent-2: var(--slack-green);
+  --accent-3: var(--slack-yellow);
+  --accent-4: var(--slack-red);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.12);
+
+  --cs-accent: var(--slack-yellow);
+  --cs-accent-rgb: 236, 178, 46;
+
+  --fs-xs: clamp(0.7rem, 0.65vw + 0.4rem, 0.8rem);
+  --fs-sm: clamp(0.8rem, 0.8vw + 0.45rem, 0.95rem);
+  --fs-base: clamp(0.95rem, 0.9vw + 0.55rem, 1.125rem);
+  --fs-md: clamp(1.1rem, 1.1vw + 0.65rem, 1.35rem);
+  --fs-lg: clamp(1.4rem, 1.8vw + 0.7rem, 2rem);
+  --fs-xl: clamp(2rem, 3vw + 0.8rem, 3.2rem);
+  --fs-2xl: clamp(2.8rem, 5vw + 1rem, 5.5rem);
+  --fs-3xl: clamp(3.5rem, 7vw + 1.2rem, 8rem);
+
+  --space-xs: clamp(0.5rem, 0.5vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 1vw, 1.25rem);
+  --space-md: clamp(1.25rem, 2vw, 2rem);
+  --space-lg: clamp(2rem, 4vw, 4rem);
+  --space-xl: clamp(3rem, 6vw, 6rem);
+  --space-2xl: clamp(5rem, 10vw, 10rem);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --duration-fast: 200ms;
+  --duration-med: 400ms;
+  --duration-slow: 800ms;
+  --duration-glacial: 1200ms;
+}
+
+[data-theme="light"] {
+  --text-primary: #1a0a1e;
+  --text-secondary: rgba(26, 10, 30, 0.65);
+  --text-tertiary: rgba(26, 10, 30, 0.4);
+  --surface-0: var(--warm-white);
+  --surface-1: var(--warm-gray-100);
+  --surface-2: var(--warm-gray-200);
+  --surface-3: #e0d4c8;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-medium: rgba(0, 0, 0, 0.12);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--slack-purple) var(--surface-0); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; background: var(--surface-0); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; transition: background var(--duration-slow) var(--ease-out-expo), color var(--duration-slow) var(--ease-out-expo); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--slack-purple); color: var(--cream); }
+:focus-visible { outline: 2px solid var(--accent-1); outline-offset: 3px; border-radius: 4px; }
+
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+.scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--slack-blue), var(--slack-green), var(--slack-yellow), var(--slack-red)); z-index: 10000; transition: width 50ms linear; }
+
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-sm) var(--space-lg); display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); background: rgba(26, 10, 30, 0.6); border-bottom: 1px solid var(--border-subtle); transform: translateY(-100%); animation: navSlideIn 0.8s var(--ease-out-expo) 0.3s forwards; }
+[data-theme="light"] .nav { background: rgba(253, 251, 247, 0.7); }
+@keyframes navSlideIn { to { transform: translateY(0); } }
+.nav__back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: var(--fs-sm); color: var(--text-secondary); transition: color var(--duration-fast), gap var(--duration-fast); font-weight: 500; letter-spacing: 0.02em; }
+.nav__back:hover { color: var(--text-primary); gap: 0.75rem; }
+.nav__back svg { width: 16px; height: 16px; }
+.nav__right { display: flex; align-items: center; gap: var(--space-sm); }
+.nav__logo { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: var(--fs-md); letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; }
+.nav__logo-dot { width: 10px; height: 10px; border-radius: 3px; background: var(--slack-green); display: inline-block; animation: dotPulse 3s ease-in-out infinite; }
+@keyframes dotPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+.theme-toggle { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--border-subtle); transition: background var(--duration-fast), transform var(--duration-fast); }
+.theme-toggle:hover { background: var(--border-medium); transform: scale(1.05); }
+.theme-toggle svg { width: 18px; height: 18px; fill: var(--text-primary); transition: transform var(--duration-med) var(--ease-out-expo); }
+.theme-toggle:hover svg { transform: rotate(30deg); }
+
+.cs-hero { min-height: 70vh; display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-2xl) var(--space-lg) var(--space-xl); position: relative; overflow: hidden; }
+.cs-hero__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.cs-hero__gradient { position: absolute; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); opacity: 0.15; background: var(--cs-accent); top: -20%; right: -10%; animation: floatGradient 20s ease-in-out infinite; }
+.cs-hero__gradient--2 { width: 400px; height: 400px; opacity: 0.08; bottom: -10%; left: -5%; top: auto; right: auto; animation-delay: -7s; }
+@keyframes floatGradient { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -40px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.95); } }
+.cs-hero__grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(ellipse 60% 50% at 50% 70%, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 70%, black 20%, transparent 70%); }
+.cs-hero__content { max-width: 900px; margin: 0 auto; width: 100%; }
+.cs-hero__label { font-size: var(--fs-xs); color: var(--cs-accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; margin-bottom: var(--space-md); display: flex; align-items: center; gap: 0.75rem; opacity: 0; transform: translateY(20px); animation: revealUp 1s var(--ease-out-expo) 0.5s forwards; }
+.cs-hero__label::before { content: ''; width: 40px; height: 2px; background: var(--cs-accent); }
+.cs-hero__title { font-family: 'Outfit', sans-serif; font-size: var(--fs-2xl); font-weight: 700; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: var(--space-lg); opacity: 0; transform: translateY(30px); animation: revealUp 1s var(--ease-out-expo) 0.7s forwards; }
+@keyframes revealUp { to { opacity: 1; transform: translateY(0); } }
+.cs-hero__meta { display: flex; flex-wrap: wrap; gap: var(--space-md); opacity: 0; transform: translateY(20px); animation: revealUp 1s var(--ease-out-expo) 0.9s forwards; }
+.cs-hero__meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+.cs-hero__meta-label { font-size: var(--fs-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.1em; }
+.cs-hero__meta-value { font-size: var(--fs-sm); font-weight: 500; color: var(--text-primary); }
+
+.cs-section { padding: var(--space-xl) var(--space-lg); position: relative; }
+.cs-section--alt { background: var(--surface-1); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+.cs-section__container { max-width: 780px; margin: 0 auto; }
+.cs-section__label { font-size: var(--fs-xs); color: var(--cs-accent); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; margin-bottom: var(--space-sm); display: flex; align-items: center; gap: 0.75rem; }
+.cs-section__label::before { content: ''; width: 8px; height: 8px; border-radius: 2px; background: currentColor; }
+.cs-section__title { font-family: 'Outfit', sans-serif; font-size: var(--fs-xl); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: var(--space-md); }
+.cs-section__text { font-size: var(--fs-base); color: var(--text-secondary); line-height: 1.8; }
+.cs-section__text p { margin-bottom: var(--space-md); }
+.cs-section__text p:last-child { margin-bottom: 0; }
+
+.cs-process { display: grid; gap: var(--space-md); margin-top: var(--space-md); }
+.cs-step { display: grid; grid-template-columns: 60px 1fr; gap: var(--space-md); padding: var(--space-md); background: var(--surface-0); border: 1px solid var(--border-subtle); border-radius: 16px; transition: all var(--duration-med) var(--ease-out-expo); }
+[data-theme="light"] .cs-section--alt .cs-step { background: var(--warm-white); }
+.cs-step:hover { border-color: var(--border-medium); transform: translateY(-2px); }
+.cs-step__number { width: 48px; height: 48px; border-radius: 14px; background: rgba(var(--cs-accent-rgb), 0.1); color: var(--cs-accent); display: grid; place-items: center; font-family: 'Outfit', sans-serif; font-size: var(--fs-lg); font-weight: 700; }
+.cs-step__content h3 { font-family: 'Outfit', sans-serif; font-size: var(--fs-md); font-weight: 600; margin-bottom: 0.5rem; }
+.cs-step__content p { font-size: var(--fs-sm); color: var(--text-secondary); line-height: 1.7; }
+
+.cs-results { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); margin-top: var(--space-lg); }
+.cs-result { padding: var(--space-md); background: var(--surface-1); border: 1px solid var(--border-subtle); border-radius: 16px; text-align: center; transition: all var(--duration-med) var(--ease-out-expo); }
+.cs-result:hover { transform: translateY(-4px); border-color: var(--border-medium); }
+.cs-result__number { font-family: 'Outfit', sans-serif; font-size: var(--fs-xl); font-weight: 700; color: var(--cs-accent); margin-bottom: 0.25rem; }
+.cs-result__label { font-size: var(--fs-sm); color: var(--text-secondary); line-height: 1.5; }
+
+.cs-next { padding: var(--space-xl) var(--space-lg); background: var(--surface-1); border-top: 1px solid var(--border-subtle); }
+.cs-next__container { max-width: 780px; margin: 0 auto; }
+.cs-next__label { font-size: var(--fs-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: var(--space-sm); }
+.cs-next__card { display: block; padding: var(--space-lg); background: var(--surface-2); border: 1px solid var(--border-subtle); border-radius: 20px; transition: all var(--duration-med) var(--ease-out-expo); }
+.cs-next__card:hover { border-color: var(--border-medium); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+.cs-next__title { font-family: 'Outfit', sans-serif; font-size: var(--fs-lg); font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.cs-next__arrow { transition: transform var(--duration-med) var(--ease-out-expo); color: var(--text-tertiary); }
+.cs-next__card:hover .cs-next__arrow { transform: translateX(6px); color: var(--text-primary); }
+.cs-next__desc { font-size: var(--fs-sm); color: var(--text-secondary); }
+
+.footer { padding: var(--space-md) var(--space-lg); text-align: center; border-top: 1px solid var(--border-subtle); }
+.footer__text { font-size: var(--fs-xs); color: var(--text-tertiary); }
+.footer__text span { color: var(--slack-red); }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity var(--duration-slow) var(--ease-out-expo), transform var(--duration-slow) var(--ease-out-expo); }
+.reveal--visible { opacity: 1; transform: translateY(0); }
+.reveal--delay-1 { transition-delay: 100ms; }
+.reveal--delay-2 { transition-delay: 200ms; }
+.reveal--delay-3 { transition-delay: 300ms; }
+.reveal--delay-4 { transition-delay: 400ms; }
+
+/* Deep Dive CTA */
+.cs-deepdive { padding: var(--space-xl) var(--space-lg); position: relative; }
+.cs-deepdive__container { max-width: 780px; margin: 0 auto; }
+.cs-deepdive__card {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);
+  padding: var(--space-lg); background: linear-gradient(135deg, rgba(var(--cs-accent-rgb), 0.06), rgba(var(--cs-accent-rgb), 0.02));
+  border: 1px solid rgba(var(--cs-accent-rgb), 0.15); border-radius: 20px;
+  text-decoration: none; color: inherit; transition: all var(--duration-med) var(--ease-out-expo);
+  position: relative; overflow: hidden;
+}
+.cs-deepdive__card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(var(--cs-accent-rgb), 0.08), transparent); opacity: 0; transition: opacity var(--duration-med); }
+.cs-deepdive__card:hover { transform: translateY(-4px); border-color: rgba(var(--cs-accent-rgb), 0.3); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); }
+.cs-deepdive__card:hover::before { opacity: 1; }
+.cs-deepdive__text { position: relative; z-index: 1; }
+.cs-deepdive__label { font-size: var(--fs-xs); color: var(--cs-accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; margin-bottom: 0.5rem; }
+.cs-deepdive__title { font-family: 'Outfit', sans-serif; font-size: var(--fs-lg); font-weight: 600; line-height: 1.2; margin-bottom: 0.25rem; }
+.cs-deepdive__desc { font-size: var(--fs-sm); color: var(--text-secondary); }
+.cs-deepdive__arrow { position: relative; z-index: 1; flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: rgba(var(--cs-accent-rgb), 0.1); display: grid; place-items: center; transition: all var(--duration-med) var(--ease-out-expo); }
+.cs-deepdive__card:hover .cs-deepdive__arrow { background: rgba(var(--cs-accent-rgb), 0.2); transform: translateX(4px); }
+.cs-deepdive__arrow svg { width: 20px; height: 20px; color: var(--cs-accent); }
+
+@media (max-width: 768px) {
+  .cs-hero { min-height: 60vh; padding-top: 120px; }
+  .cs-hero__title { font-size: clamp(2rem, 6vw, 3rem); }
+  .cs-hero__meta { gap: var(--space-sm); }
+  .cs-results { grid-template-columns: 1fr; }
+  .cs-step { grid-template-columns: 48px 1fr; gap: var(--space-sm); }
+  .cs-step__number { width: 40px; height: 40px; font-size: var(--fs-md); }
+}
+@media (max-width: 480px) {
+  .cs-hero__meta { flex-direction: column; }
+  .cs-deepdive__card { flex-direction: column; text-align: center; }
+  .cs-deepdive__arrow { align-self: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to portfolio
+  </a>
+  <div class="nav__right">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-dot"></span>
+      Tori Rice
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+      <svg id="themeIcon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3a9 9 0 1 0 9 9c0-.5-.04-1-.12-1.5A5.5 5.5 0 0 1 13.5 3.12 9.3 9.3 0 0 0 12 3Z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<section class="cs-hero">
+  <div class="cs-hero__bg">
+    <div class="cs-hero__gradient"></div>
+    <div class="cs-hero__gradient cs-hero__gradient--2"></div>
+    <div class="cs-hero__grid"></div>
+  </div>
+  <div class="cs-hero__content">
+    <div class="cs-hero__label">Case Study</div>
+    <h1 class="cs-hero__title">Welcome.Salesforce.com</h1>
+    <div class="cs-hero__meta">
+      <div class="cs-hero__meta-item">
+        <span class="cs-hero__meta-label">Role</span>
+        <span class="cs-hero__meta-value">Lead Product Designer</span>
+      </div>
+      <div class="cs-hero__meta-item">
+        <span class="cs-hero__meta-label">Team</span>
+        <span class="cs-hero__meta-value">2 designers, 3 engineers, 1 PM</span>
+      </div>
+      <div class="cs-hero__meta-item">
+        <span class="cs-hero__meta-label">Timeline</span>
+        <span class="cs-hero__meta-value">2023 &ndash; 2024</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-section__container">
+    <div class="cs-section__label reveal">Overview</div>
+    <h2 class="cs-section__title reveal reveal--delay-1">The first screen every new admin sees.</h2>
+    <div class="cs-section__text reveal reveal--delay-2">
+      <p>Redesigned the first-touch onboarding experience for new Salesforce customers — the very first screen admins see after their org is provisioned.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section cs-section--alt">
+  <div class="cs-section__container">
+    <div class="cs-section__label reveal">The Challenge</div>
+    <h2 class="cs-section__title reveal reveal--delay-1">From excitement to confusion in minutes.</h2>
+    <div class="cs-section__text reveal reveal--delay-2">
+      <p>The existing welcome experience was a generic landing page with links to documentation. New customers reported feeling overwhelmed, unsure what to do first, and unable to connect their business goals to platform capabilities. First-week engagement was declining.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-section__container">
+    <div class="cs-section__label reveal">Process</div>
+    <h2 class="cs-section__title reveal reveal--delay-1">Personalized paths to first value.</h2>
+    <div class="cs-process">
+      <div class="cs-step reveal reveal--delay-1">
+        <div class="cs-step__number">1</div>
+        <div class="cs-step__content">
+          <h3>Research</h3>
+          <p>Interviewed 30 new admins within their first 90 days. Mapped the emotional journey from excitement to confusion to frustration. Identified the "day 2 problem" — the dropoff after initial setup excitement fades.</p>
+        </div>
+      </div>
+      <div class="cs-step reveal reveal--delay-2">
+        <div class="cs-step__number">2</div>
+        <div class="cs-step__content">
+          <h3>Personalization</h3>
+          <p>Designed an onboarding flow that adapts based on org type (Sales Cloud, Service Cloud, etc.), admin experience level, and company size. No two welcome experiences are the same.</p>
+        </div>
+      </div>
+      <div class="cs-step reveal reveal--delay-3">
+        <div class="cs-step__number">3</div>
+        <div class="cs-step__content">
+          <h3>Guided Setup</h3>
+          <p>Created a task-based checklist that prioritizes quick wins. Each task includes context (why this matters), estimated time, and a direct deep-link into Setup. Progress persists across sessions.</p>
+        </div>
+      </div>
+      <div class="cs-step reveal reveal--delay-4">
+        <div class="cs-step__number">4</div>
+        <div class="cs-step__content">
+          <h3>Measurement</h3>
+          <p>Tracked time-to-first-value, checklist completion rates, and 30-day retention. Iterated based on drop-off analysis at each onboarding step.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section cs-section--alt">
+  <div class="cs-section__container">
+    <div class="cs-section__label reveal">Results</div>
+    <h2 class="cs-section__title reveal reveal--delay-1">A better first impression at scale.</h2>
+    <div class="cs-results">
+      <div class="cs-result reveal reveal--delay-1">
+        <div class="cs-result__number">1st</div>
+        <div class="cs-result__label">Impression redesigned for all new Salesforce orgs</div>
+      </div>
+      <div class="cs-result reveal reveal--delay-2">
+        <div class="cs-result__number">&uarr;</div>
+        <div class="cs-result__label">Increased first-week admin engagement</div>
+      </div>
+      <div class="cs-result reveal reveal--delay-3">
+        <div class="cs-result__number">&darr;</div>
+        <div class="cs-result__label">Reduced time-to-first-value for new customers</div>
+      </div>
+      <div class="cs-result reveal reveal--delay-4">
+        <div class="cs-result__number">5</div>
+        <div class="cs-result__label">Personalized onboarding across cloud products</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deep Dive CTA -->
+<section class="cs-deepdive">
+  <div class="cs-deepdive__container">
+    <a href="https://www.tjricedesigns.com/welcome-salesforce-com" target="_blank" rel="noopener" class="cs-deepdive__card reveal">
+      <div class="cs-deepdive__text">
+        <div class="cs-deepdive__label">Full Case Study</div>
+        <div class="cs-deepdive__title">View detailed process &amp; screens</div>
+        <div class="cs-deepdive__desc">Explore the complete design journey including research artifacts, wireframes, and final designs.</div>
+      </div>
+      <div class="cs-deepdive__arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="cs-next">
+  <div class="cs-next__container">
+    <div class="cs-next__label reveal">Next Project</div>
+    <a href="external-client-apps.html" class="cs-next__card reveal reveal--delay-1">
+      <div class="cs-next__title">
+        External Client Apps
+        <span class="cs-next__arrow">&rarr;</span>
+      </div>
+      <div class="cs-next__desc">Extending Salesforce from internal tool to external customer touchpoint.</div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="footer__text">Designed with <span>&hearts;</span> and too much coffee. &copy; 2026 Tori Rice.</p>
+</footer>
+
+<script>
+const scrollProgress = document.getElementById('scrollProgress');
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  scrollProgress.style.width = progress + '%';
+}
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) { requestAnimationFrame(() => { updateScrollProgress(); ticking = false; }); ticking = true; }
+}, { passive: true });
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('reveal--visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const html = document.documentElement;
+const sunPath = 'M12 3v1m0 16v1m-8-9H3m18 0h-1m-2.636-6.364-.707.707M6.343 17.657l-.707.707m0-12.728.707.707M17.657 17.657l.707.707M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z';
+const moonPath = 'M12 3a9 9 0 1 0 9 9c0-.5-.04-1-.12-1.5A5.5 5.5 0 0 1 13.5 3.12 9.3 9.3 0 0 0 12 3Z';
+themeToggle.addEventListener('click', () => {
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  themeIcon.querySelector('path').setAttribute('d', isDark ? sunPath : moonPath);
+  document.getElementById('nav').style.background = isDark ? 'rgba(253, 251, 247, 0.7)' : 'rgba(26, 10, 30, 0.6)';
+});
+</script>
+</body>
+</html>
