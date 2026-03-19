@@ -954,140 +954,6 @@ body::before {
   line-height: 1.6;
 }
 
-/* ============================================
-   WHY SLACK
-   ============================================ */
-.why-slack__content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
-  align-items: center;
-}
-
-.why-slack__text p {
-  font-size: var(--fs-base);
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: var(--space-md);
-}
-
-.why-slack__visual {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-}
-
-.slack-logo-artistic {
-  position: relative;
-  width: 200px;
-  height: 200px;
-}
-
-.slack-dot {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  animation: slackFloat 6s ease-in-out infinite;
-}
-
-.slack-dot--blue {
-  background: var(--slack-blue);
-  top: 0;
-  right: 0;
-  animation-delay: 0s;
-}
-
-.slack-dot--green {
-  background: var(--slack-green);
-  bottom: 0;
-  right: 0;
-  animation-delay: 1.5s;
-}
-
-.slack-dot--yellow {
-  background: var(--slack-yellow);
-  bottom: 0;
-  left: 0;
-  animation-delay: 3s;
-}
-
-.slack-dot--red {
-  background: var(--slack-red);
-  top: 0;
-  left: 0;
-  animation-delay: 4.5s;
-}
-
-.slack-dot--center {
-  background: var(--slack-purple);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  animation-delay: 0.75s;
-}
-
-@keyframes slackFloat {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(8px, -8px) rotate(5deg); }
-  50% { transform: translate(0, -12px) rotate(0deg); }
-  75% { transform: translate(-8px, -4px) rotate(-5deg); }
-}
-
-.slack-dot--center {
-  animation-name: slackCenter;
-}
-
-@keyframes slackCenter {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.1); }
-}
-
-.slack-connector {
-  position: absolute;
-  background: var(--border-subtle);
-}
-
-.slack-connector--h {
-  height: 2px;
-  width: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.slack-connector--v {
-  width: 2px;
-  height: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.slack-connector--left { left: 44px; }
-.slack-connector--right { right: 44px; }
-.slack-connector--top { top: 44px; }
-.slack-connector--bottom { bottom: 44px; }
-
-.why-slack__quote {
-  margin-top: var(--space-lg);
-  padding: var(--space-md);
-  border-left: 3px solid var(--slack-purple);
-  background: var(--surface-1);
-  border-radius: 0 12px 12px 0;
-}
-
-.why-slack__quote p {
-  font-family: 'Outfit', sans-serif;
-  font-size: var(--fs-md);
-  font-style: italic;
-  color: var(--text-primary);
-  margin: 0;
-  line-height: 1.6;
-}
 
 /* ============================================
    CONTACT
@@ -1252,14 +1118,6 @@ body::before {
     gap: var(--space-lg);
   }
 
-  .why-slack__content {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-
-  .why-slack__visual {
-    min-height: 250px;
-  }
 
   .philosophy__grid {
     grid-template-columns: 1fr;
@@ -1368,7 +1226,7 @@ body::before {
     <a href="#about" class="nav__link">About</a>
     <a href="#work" class="nav__link">Work</a>
     <a href="#philosophy" class="nav__link">Philosophy</a>
-    <a href="#why-slack" class="nav__link">Why Slack</a>
+
     <a href="#contact" class="nav__link">Contact</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
       <svg id="themeIcon" viewBox="0 0 24 24" aria-hidden="true">
@@ -1678,32 +1536,6 @@ body::before {
   </div>
 </section>
 
-<!-- Why Slack -->
-<section class="section" id="why-slack">
-  <div class="section__container">
-    <div class="section__label reveal">A letter to Slack</div>
-    <div class="section__title reveal reveal--delay-1">Why Slack is my next chapter.</div>
-    <div class="why-slack__content">
-      <div class="why-slack__text reveal reveal--delay-2">
-        <p>I've seen the power of the Salesforce Platform from the inside, but I've also seen how easily a unique culture can be diluted by enterprise gravity. I'm joining Slack because I align with its mission of being the central hub for real-time collaboration, but I'm equally committed to letting Slack keep its character.</p>
-        <p>As a strong communicator, I can navigate the 'Salesforce-speak' and bridge the technical patterns without letting the corporate overhead stifle Slack's agility or its voice. I want to build the bridge, not a tunnel that loses the scenery.</p>
-      </div>
-      <div class="why-slack__visual reveal reveal--delay-3">
-        <div class="slack-logo-artistic">
-          <div class="slack-connector slack-connector--h slack-connector--left"></div>
-          <div class="slack-connector slack-connector--h slack-connector--right"></div>
-          <div class="slack-connector slack-connector--v slack-connector--top"></div>
-          <div class="slack-connector slack-connector--v slack-connector--bottom"></div>
-          <div class="slack-dot slack-dot--blue"></div>
-          <div class="slack-dot slack-dot--green"></div>
-          <div class="slack-dot slack-dot--yellow"></div>
-          <div class="slack-dot slack-dot--red"></div>
-          <div class="slack-dot slack-dot--center"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Contact -->
 <section class="section contact" id="contact">
